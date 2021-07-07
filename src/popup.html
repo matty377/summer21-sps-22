@@ -1,10 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <link rel="stylesheet" href="/styles/button.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/popup.css" />
+    <title>Summer21-sps-22</title>
   </head>
   <body>
-    <button id="changeColor"></button>
-    <script src="/js/popup.js"></script>
+    <header id="heading">
+      <div id="heading-container">
+        <img
+          class="extension-logo"
+          src="./images/get_started128.png"
+          alt="logo"
+        />
+        <h1 id="extension-name">Extension</h1>
+      </div>
+      <button class="btn-close">x</button>
+    </header>
+
+    <main>
+      <section class="container">
+        <div class="section-heading">
+          <h3>Website</h3>
+        </div>
+        <div id="page-display">
+          <p id="current-page">Google</p>
+          <a href="#">incorrect?</a>
+        </div>
+      </section>
+
+      <section class="container">
+        <div class="section-heading">
+          <h3>Tutorials</h3>
+        </div>
+
+        <form id="settings" action="#">
+          <label for="introduction">
+            <input
+              type="radio"
+              name="tutorial-option"
+              id="introduction"
+              value="introduction"
+              checked
+            />
+            <div class="radio"></div>
+            Introduction</label
+          >
+
+          <label for="commonkeys">
+            <input
+              type="radio"
+              name="tutorial-option"
+              id="commonkeys"
+              value="commonkeys"
+            />
+            <div class="radio"></div>
+            Common Hotkeys</label
+          >
+
+          <label for="searching">
+            <input
+              type="radio"
+              name="tutorial-option"
+              id="searching"
+              value="searching"
+            />
+            <div class="radio"></div>
+            Searching</label
+          >
+
+          <button class="btn-submit" type="submit">Get Started!</button>
+        </form>
+      </section>
+    </main>
   </body>
 </html>
