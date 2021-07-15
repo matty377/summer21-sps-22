@@ -1,13 +1,24 @@
-const form = document.querySelector("#settings");
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("#settings");
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+  form.addEventListener("submit", function (e) {
+    const formData = new FormData(form);
+    e.preventDefault();
 
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    let { hostname } = new URL(tabs[0].url);
+    let formObject = {};
+    formData.forEach((value, key) => {
+      formObject[key] = value;
+    });
 
-    console.log("In popup console: ", hostname);
+    const formJson = JSON.stringify(formObject);
 
-    chrome.tabs.sendMessage(tabs[0].id, { url: hostname });
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      let { hostname } = new URL(tabs[0].url);
+
+      chrome.tabs.sendMessage(tabs[0].id, {
+        url: hostname,
+        form_data: formJson,
+      });
+    });
   });
 });
