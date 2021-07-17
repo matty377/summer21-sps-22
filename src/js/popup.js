@@ -10,7 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
       formObject[key] = value;
     });
 
-    getWalkthroughJson("../Content/googleTutorialContent.json").then((data) => {
+    let userOption = getCorrectJsonFile(formObject["tutorial-option"]);
+
+    getWalkthroughJson(userOption).then((data) => {
       chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         let { hostname } = new URL(tabs[0].url);
 
@@ -32,5 +34,20 @@ const getWalkthroughJson = async function (path) {
     const response = await fetch("../Content/error.json");
     const data = await response.json();
     return data;
+  }
+};
+
+const getCorrectJsonFile = function (formData) {
+  let path = "../Content/";
+  switch (formData) {
+    case "introduction":
+      return path.concat("googleTutorialContent.json");
+    // ! Other options that are listed on the popup form but no File for them yet. These can change according to the url/which walkthroughs we have so far
+    // case "commonkeys":
+    //   return path + "googleTutorialCommonkeys.json";
+    // case "searching":
+    //   return path + "googleTutorialSearch.json";
+    default:
+      return path.concat("error.json");
   }
 };
