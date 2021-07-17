@@ -1,5 +1,6 @@
 chrome.runtime.onMessage.addListener((request) => {
   let walkthrough_data = request.walkthrough_data;
+  console.log(walkthrough_data);
 
   const box = createWalkthroughContainer(walkthrough_data);
 
