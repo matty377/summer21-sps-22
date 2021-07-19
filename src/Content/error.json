@@ -1,0 +1,11 @@
+{
+    "name": "Error",
+    "description": "Walkthrough does not exists",
+    "popup_one": {
+        "title": "An Error has occured",
+        "slideNumber": 0,
+        "Content": {
+            "stepOne": "There seems to be no walkthrough for the option that you selected. Please try another option. "
+        }
+    }
+}
