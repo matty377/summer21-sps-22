@@ -2,24 +2,68 @@ chrome.runtime.onMessage.addListener((request) => {
   let walkthrough_data = request.walkthrough_data;
   console.log(walkthrough_data);
 
-  const box = createWalkthroughContainer(walkthrough_data);
-
+  const box = createWalkthroughContainer(walkthrough_data.google);
   document.querySelector("body").appendChild(box);
   console.log(box);
+
+  const updatePopup = function(title, content) {
+    let heading = document.querySelector(".wt-title")
+    let body = document.querySelector(".wt-body");
+
+
+    heading.innerText = title;
+    body.innerText = content;
+  }
+
+
+  const forwardBtn = document.querySelector(".forward")
+  let currentStep = 0;
+  let contentStep = 0;
+  let data = walkthrough_data.google.steps[currentStep];
+  forwardBtn.addEventListener("click", function() {
+  
+    // check if we have any tutorial steps
+    if(!data) {   
+      console.log("End of tutorial");
+      updatePopup("End of tutorial", "Have a nice day!")
+    } else {
+      
+      // if only 1 substep exists, display the data and move on to the next tutorial step on button click
+      // otherwise, traverse through substeps on button click
+      if(data.content.length === 1) {
+        updatePopup(data.title, data.content[0].text);
+        contentStep = 0;
+        currentStep++;
+      } else if(data.content.length > 1 && data.content[contentStep]) {  
+        updatePopup(data.title, data.content[contentStep].text);
+        contentStep++;
+      }
+
+      // if at the end of the substeps, on button click move on to the next tutorial step.
+      if(!data.content[contentStep]) {
+        contentStep = 0;
+        currentStep++;
+      }
+
+      // update our data
+      data = walkthrough_data.google.steps[currentStep];
+
+    } 
+  })
 });
 
-const createWalkthroughContainer = function () {
+const createWalkthroughContainer = function (data) {
   const box = document.createElement("section");
   styleWalkthroughContainer(box);
 
   const text = `
     <div id="wt-card">
-      <h2>Title of walthrough</h2>
-      <p>The text of this walkthough</p>
+      <h2 class="wt-title">${data.title}</h2>
+      <p class="wt-body">${data.description}</p>
     </div>
     <div style="display: flex; justify-content: space-between">
       <button class="wt-btn" onclick=""> back </button>
-      <button class="wt-btn" onclick=""> forward </button>
+      <button class="wt-btn forward" onclick=""> forward </button>
     </div>
     <style>
     @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
@@ -64,4 +108,6 @@ const styleWalkthroughContainer = function (box) {
   box.style.backgroundColor = "white";
   box.style.top = "0px";
   box.style.padding = "1%";
+  box.style.minWidth = "350px";
+  box.style.maxWidth = "350px";
 };
