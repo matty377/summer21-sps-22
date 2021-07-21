@@ -28,26 +28,15 @@ chrome.runtime.onMessage.addListener((request) => {
       updatePopup("End of tutorial", "Have a nice day!")
     } else {
       
-      // if only 1 substep exists, display the data and move on to the next tutorial step on button click
-      // otherwise, traverse through substeps on button click
-      if(data.content.length === 1) {
-        updatePopup(data.title, data.content[0].text);
-        contentStep = 0;
-        currentStep++;
-      } else if(data.content.length > 1 && data.content[contentStep]) {  
-        updatePopup(data.title, data.content[contentStep].text);
-        contentStep++;
-      }
+      updatePopup(data.title, data.content[contentStep].text);
+      contentStep++;
 
       // if at the end of the substeps, on button click move on to the next tutorial step.
       if(!data.content[contentStep]) {
         contentStep = 0;
         currentStep++;
+        data = walkthrough_data.google.steps[currentStep];
       }
-
-      // update our data
-      data = walkthrough_data.google.steps[currentStep];
-
     } 
   })
 });
