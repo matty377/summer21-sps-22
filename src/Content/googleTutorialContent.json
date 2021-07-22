@@ -9,9 +9,8 @@
                     {
                         "text": "This is a link that will take you to your gmail account if you are logged in. Click the word ‘Gmail’ to see! "
                     }
-                ]
-                   
-                
+                ],
+                "element_class": "gb_f"
             },
             {
                 "title": "The image tab: explained",
@@ -19,10 +18,9 @@
                     {
                         "text": "This is a link that if clicked on, will take you to Googles’ images search engine. There you can type anything in the search bar and Google will populate thousands of images of what you typed! "
                     }
-
-                ]
+                ],
+                "element_class": "gb_f"
             },
-
             {
                 "title": "What applications does google offer?",
                 "content": [
@@ -32,8 +30,8 @@
                     {
                         "text": "You can click on each of these icons, which are links, to explore what Google has to offer. Google provides applications such Youtube, Google calendar, Google maps, and a translator! "
                     }
-                ]
-              
+                ],
+                "element_class": "gb_C"
             },
             {
                 "title": "Google profile, what's that?",
@@ -41,7 +39,8 @@
                     {
                         "text": "Click this small circle to see an enlarged image of your current profile picture. This image is made public to other gmail users. "
                     }
-                ]
+                ],
+                "element_class": "gb_Na"
             },
             {
                 "title": "Google profile options: explained.",
@@ -50,31 +49,31 @@
                         "text": "From here you can change your profile picture by clicking the camera icon located towards the bottom right of your current profile picture. "
                     },
                     {
-
                         "text": "From this menu you can also add another account. "
                     },
                     {
                         "text": "Or manage you current account."
                     }
-                ]
+                ],
+                "element_class": "gb_Na"
             },
             {
                 "title": "Google it!",
                 "content": [
                     {
-                       "text": "Now that you know of all the plentiful features Google offers its users, all that’s left is to learn how to “Google it!” "
+                        "text": "Now that you know of all the plentiful features Google offers its users, all that’s left is to learn how to “Google it!” "
                     },
                     {
                         "text": "Click in this large search bar and just type anything that you would like to know more about. "
-                    },  
-                    {
-                        "text": "Then, press the enter key located on your keyboard, or click the magnifying glass to the left of the search bar to search for thousands of websites that are related to your topic. "
-                                            
                     },
                     {
-                      "text": "That’s it! You have successfully completed the walkthrough and learned about all the resources Google provides as well as how to “Google it!”  Enjoy Googling! :)"
+                        "text": "Then, press the enter key located on your keyboard, or click the magnifying glass to the left of the search bar to search for thousands of websites that are related to your topic. "
+                    },
+                    {
+                        "text": "That’s it! You have successfully completed the walkthrough and learned about all the resources Google provides as well as how to “Google it!”  Enjoy Googling! :)"
                     }
-                ]
+                ],
+                "element_class": "gLFyf"
             }
         ]
     }
