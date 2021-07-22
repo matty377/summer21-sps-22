@@ -6,11 +6,17 @@ chrome.runtime.onMessage.addListener((request) => {
   document.querySelector("body").appendChild(box);
   console.log(box);
 
-  const updatePopup = function(title, content) {
+  const updatePopup = function(title, content, element_name) {
+    const popup_box = document.getElementById("main-walkthrough-box");
     let heading = document.querySelector(".wt-title")
     let body = document.querySelector(".wt-body");
+    let page_element = document.querySelector(`.${element_name}`);
+    const objectVar = getOffSetOfElement(page_element);
+    const { left, top } = objectVar;
 
 
+    popup_box.style.top = `${top}px`;
+    popup_box.style.right = `${document.body.clientWidth - left}px`;
     heading.innerText = title;
     body.innerText = content;
   }
@@ -31,11 +37,11 @@ chrome.runtime.onMessage.addListener((request) => {
       // if only 1 substep exists, display the data and move on to the next tutorial step on button click
       // otherwise, traverse through substeps on button click
       if(data.content.length === 1) {
-        updatePopup(data.title, data.content[0].text);
+        updatePopup(data.title, data.content[0].text, data.element_class);
         contentStep = 0;
         currentStep++;
       } else if(data.content.length > 1 && data.content[contentStep]) {  
-        updatePopup(data.title, data.content[contentStep].text);
+        updatePopup(data.title, data.content[contentStep].text, data.element_class);
         contentStep++;
       }
 
@@ -51,6 +57,13 @@ chrome.runtime.onMessage.addListener((request) => {
     } 
   })
 });
+
+const getOffSetOfElement = function (el) {
+  var rect = el.getBoundingClientRect(),
+  scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+  scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  return { top: rect.bottom - scrollTop, left: rect.left + scrollLeft }
+};
 
 const createWalkthroughContainer = function (data) {
   const box = document.createElement("section");
