@@ -1,7 +1,4 @@
-This directory is where you'll write all of your code!
-
-By default it contains a barebones portfolio web app. To run a local server,
-execute this command:
+I updated this one time!
 
 ```
 mvn package exec:java
